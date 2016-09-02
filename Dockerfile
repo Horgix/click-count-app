@@ -1,3 +1,3 @@
 FROM jetty
 
-COPY target/clickCount.war /var/lib/jetty/webapps/
+COPY target/clickCount.war /var/lib/jetty/webapps/ROOT.war
