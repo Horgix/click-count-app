@@ -3,6 +3,7 @@ image: horgix/docker-make:latest
 stages:
   - check
   - build
+  - staging
 
 check:
   stage: check
@@ -13,5 +14,8 @@ build:
   stage: build
   script:
     - make build
-    - docker ps
-    - docker images
+
+staging:
+  stage: staging
+  script:
+    - make staging
