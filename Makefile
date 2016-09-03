@@ -5,10 +5,10 @@ all:: build run
 build::
 	mkdir -p ${BUILD_DIR}
 	cp ${PWD} ${BUILD_DIR} -R
-	ls -lah ${BUILD_DIR}
 	docker run --rm -v ${BUILD_DIR}/click-count:/usr/src/click-count -w /usr/src/click-count maven mvn clean package
-	#docker run --rm -v ${PWD}:/var/output busybox chown `id -u`:`id -g` /var/output/ -R
-	docker build -t clickcount ${BUILD_DIR}/click-count:${CI_BUILD_REF}
+	docker build -t horgix/click-count:${CI_BUILD_REF} ${BUILD_DIR}/click-count
+	docker login -u="${HUB_LOGIN}" -p="${HUB_PASSWORD}"
+	docker push horgix/click-count:${CI_BUILD_REF}
 
 staging::
 	cp marathon_app.json marathon_app_staging.json
