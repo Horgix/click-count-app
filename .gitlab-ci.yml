@@ -1,0 +1,17 @@
+image: horgix/docker-make:latest
+
+stages:
+  - check
+  - build
+
+check:
+  stage: check
+  script:
+    - docker info
+
+build:
+  stage: build
+  script:
+    - make build
+    - docker ps
+    - docker images
