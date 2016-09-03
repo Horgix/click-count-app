@@ -7,8 +7,6 @@ build::
 	cp ${PWD} ${BUILD_DIR} -R
 	docker run --rm -v ${BUILD_DIR}/click-count:/usr/src/click-count -w /usr/src/click-count maven mvn clean package
 	docker build -t horgix/click-count:${CI_BUILD_REF} ${BUILD_DIR}/click-count
-	docker login -u="${HUB_LOGIN}" -p="${HUB_PASSWORD}"
-	docker push horgix/click-count:${CI_BUILD_REF}
 
 staging::
 	cp marathon_app.json marathon_app_staging.json
