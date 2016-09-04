@@ -2,7 +2,7 @@
   "id": "/click-count",
   "cmd": null,
   "cpus": 0.1,
-  "mem": 128,
+  "mem": 300,
   "disk": 0,
   "instances": 1,
   "constraints": [
