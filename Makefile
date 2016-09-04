@@ -10,7 +10,7 @@ build::
 
 staging::
 	cp marathon_app.json marathon_app_staging.json
-	sed -i 's/__ENV__/integ/;s/__VERSION__/${CI_BUILD_REF}/;s/__DOMAIN_NAME__/${STAGING_ENDPOINT}/' marathon_app_staging.json
+	sed -i 's/__ENV__/staging/;s/__VERSION__/${CI_BUILD_REF}/;s/__DOMAIN_NAME__/${STAGING_ENDPOINT}/' marathon_app_staging.json
 	curl -L -X PUT "${MARATHON_URL}/v2/apps/click-count?force=true" -H "Content-type: application/json" -u "horgix:verysecure" -d @marathon_app_staging.json 
 
 production::
