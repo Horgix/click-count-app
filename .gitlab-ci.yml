@@ -13,6 +13,9 @@ check:
 
 build:
   stage: build
+  variables:
+    CACHE_DIR:  "/cache/maven-repository"
+    MAVEN_OPTS_DOCKER: '-e MAVEN_OPTS="-Dmaven.repo.local=/cache" -v ${CACHE_DIR}:/cache'
   script:
     - make build
     - docker login -u="${HUB_LOGIN}" -p="${HUB_PASSWORD}"

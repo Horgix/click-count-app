@@ -6,7 +6,7 @@ all:: build run
 build::
 	mkdir -p ${BUILD_DIR}
 	cp ${PWD} ${BUILD_DIR} -R
-	docker run --rm -v ${BUILD_DIR}/click-count:/usr/src/click-count -w /usr/src/click-count maven mvn clean package
+	docker run --rm -v ${BUILD_DIR}/click-count:/usr/src/click-count -w /usr/src/click-count ${MAVEN_OPTS_DOCKER} maven mvn clean package
 	docker build -t horgix/click-count:${CI_BUILD_REF} ${BUILD_DIR}/click-count
 
 staging production::
