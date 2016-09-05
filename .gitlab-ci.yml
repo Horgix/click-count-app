@@ -20,12 +20,18 @@ build:
 
 staging:
   stage: staging
+  variables:
+    ENVIRONMENT: "staging"
+    ENDPOINT: "${STAGING_ENDPOINT}"
   script:
     - make staging
   environment: staging
 
 production:
   stage: production
+  variables:
+    ENVIRONMENT: "prod"
+    ENDPOINT: "${PRODUCTION_ENDPOINT}"
   script:
     - make production
   environment: production
