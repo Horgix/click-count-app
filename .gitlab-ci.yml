@@ -1,8 +1,12 @@
 image: horgix/docker-make:latest
 
+variables:
+  BUILD_DIR:  "/tmp/gitlab-build-${CI_PIPELINE_ID}"
+
 stages:
   - check
   - build
+  - cleanup
   - staging
   - production
 
@@ -17,9 +21,16 @@ build:
     CACHE_DIR:  "/cache/maven-repository"
     MAVEN_OPTS_DOCKER: '-e MAVEN_OPTS="-Dmaven.repo.local=/cache" -v ${CACHE_DIR}:/cache'
   script:
+    - mkdir -p ${BUILD_DIR} && cp ${PWD}/. ${BUILD_DIR} -R
     - make build
     - docker login -u="${HUB_LOGIN}" -p="${HUB_PASSWORD}"
     - docker push horgix/click-count:${CI_BUILD_REF}
+
+cleanup:
+  stage: cleanup
+  script:
+    - rm -rf ${BUILD_DIR}
+  when: always
 
 staging:
   stage: staging

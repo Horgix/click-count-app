@@ -1,13 +1,13 @@
-BUILD_DIR="/tmp/gitlab-build-${CI_BUILD_ID}"
 MARATHON_ENDPOINT=${MARATHON_URL}/v2/apps/click-count-${ENVIRONMENT}
+# TODO : set BUILD_DIR if undefined
 
 all:: build run
 
 build::
-	mkdir -p ${BUILD_DIR}
-	cp ${PWD} ${BUILD_DIR} -R
-	docker run --rm -v ${BUILD_DIR}/click-count:/usr/src/click-count -w /usr/src/click-count ${MAVEN_OPTS_DOCKER} maven mvn clean package
-	docker build -t horgix/click-count:${CI_BUILD_REF} ${BUILD_DIR}/click-count
+	# Build .war
+	docker run --rm -v ${BUILD_DIR}:/usr/src/click-count -w /usr/src/click-count ${MAVEN_OPTS_DOCKER} maven mvn clean package
+	# Build Docker image
+	docker build -t horgix/click-count:${CI_BUILD_REF} ${BUILD_DIR}
 
 staging production::
 	cp marathon_app.json marathon_app_${ENVIRONMENT}.json
