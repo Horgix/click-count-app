@@ -48,5 +48,9 @@
     "traefik.enable": "true",
     "traefik.backend": "click-count-__ENV__",
     "traefik.frontend.rule": "Host:__DOMAIN_NAME__"
+  },
+  "upgradeStrategy": {
+    "minimumHealthCapacity": 0,
+    "maximumOverCapacity": 1
   }
 }
