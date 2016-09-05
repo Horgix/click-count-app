@@ -16,3 +16,5 @@ staging::
 
 production::
 	cp marathon_app.json marathon_app_production.json
+	sed -i 's/__ENV__/production/;s/__VERSION__/${CI_BUILD_REF}/;s/__DOMAIN_NAME__/${PRODUCTION_ENDPOINT}/' marathon_app_production.json
+	curl -L -X PUT "${MARATHON_ENDPOINT}" -H "Content-type: application/json" -u "${MARATHON_USERNAME}:${MARATHON_PASSWORD}" -d @marathon_app_production.json 

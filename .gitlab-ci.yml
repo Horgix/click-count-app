@@ -4,6 +4,7 @@ stages:
   - check
   - build
   - staging
+  - production
 
 check:
   stage: check
@@ -22,3 +23,9 @@ staging:
   script:
     - make staging
   environment: staging
+
+production:
+  stage: production
+  script:
+    - make production
+  environment: production
