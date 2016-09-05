@@ -31,6 +31,7 @@ staging:
   variables:
     ENVIRONMENT: "staging"
     ENDPOINT: "${STAGING_ENDPOINT}"
+    REDIS_HOST: "${STAGING_REDIS}"
   script:
     - make staging
   environment: staging
@@ -40,6 +41,7 @@ production:
   variables:
     ENVIRONMENT: "prod"
     ENDPOINT: "${PRODUCTION_ENDPOINT}"
+    REDIS_HOST: "${PRODUCTION_REDIS}"
   script:
     - make production
   environment: production

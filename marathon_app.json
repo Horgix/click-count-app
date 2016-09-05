@@ -52,5 +52,8 @@
   "upgradeStrategy": {
     "minimumHealthCapacity": 0,
     "maximumOverCapacity": 1
+  },
+  "env": {
+    "REDIS_HOST":   "__REDIS_HOST__"
   }
 }

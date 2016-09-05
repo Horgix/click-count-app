@@ -11,5 +11,5 @@ build::
 
 staging production::
 	cp marathon_app.json marathon_app_${ENVIRONMENT}.json
-	sed -i 's/__ENV__/${ENVIRONMENT}/;s/__VERSION__/${CI_BUILD_REF}/;s/__DOMAIN_NAME__/${ENDPOINT}/' marathon_app_${ENVIRONMENT}.json
+	sed -i 's/__ENV__/${ENVIRONMENT}/;s/__VERSION__/${CI_BUILD_REF}/;s/__DOMAIN_NAME__/${ENDPOINT}/;s/__REDIS_HOST__/${REDIS_HOST}/' marathon_app_${ENVIRONMENT}.json
 	curl -L -X PUT "${MARATHON_ENDPOINT}" -H "Content-type: application/json" -u "${MARATHON_USERNAME}:${MARATHON_PASSWORD}" -d @marathon_app_${ENVIRONMENT}.json 
