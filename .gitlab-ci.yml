@@ -4,16 +4,10 @@ variables:
   BUILD_DIR:  "/tmp/gitlab-build-${CI_PIPELINE_ID}"
 
 stages:
-  - check
   - build
   - cleanup
   - staging
   - production
-
-check:
-  stage: check
-  script:
-    - docker info
 
 build:
   stage: build
