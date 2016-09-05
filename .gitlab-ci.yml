@@ -21,3 +21,4 @@ staging:
   stage: staging
   script:
     - make staging
+  environment: staging
