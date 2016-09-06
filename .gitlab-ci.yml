@@ -34,6 +34,9 @@ staging:
     REDIS_HOST: "${STAGING_REDIS}"
   script:
     - make staging
+  artifacts:
+    paths:
+      - marathon_app_staging.json
   environment: staging
 
 production:
@@ -44,4 +47,7 @@ production:
     REDIS_HOST: "${PRODUCTION_REDIS}"
   script:
     - make production
+  artifacts:
+    paths:
+      - marathon_app_prod.json
   environment: production
