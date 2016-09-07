@@ -38,6 +38,9 @@ staging:
     paths:
       - marathon_app_staging.json
   environment: staging
+  only:
+    - tags
+    - triggers
 
 production:
   stage: production
@@ -51,3 +54,6 @@ production:
     paths:
       - marathon_app_prod.json
   environment: production
+  only:
+    - triggers
+    - master
