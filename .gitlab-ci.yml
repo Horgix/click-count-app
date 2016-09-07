@@ -40,7 +40,6 @@ staging:
   environment: staging
   only:
     - tags
-    - triggers
 
 production:
   stage: production
@@ -55,5 +54,4 @@ production:
       - marathon_app_prod.json
   environment: production
   only:
-    - triggers
     - master
